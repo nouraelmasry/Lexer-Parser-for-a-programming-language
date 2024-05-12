@@ -1,0 +1,13 @@
+
+-> output
+
+enter the equation: 3+5
+[INT->3, PLUS, INT->5]
+enter the equation: 4.5*3
+[FLOAT->4.5, Multiply, INT->3]
+enter the equation: 4/3
+[INT->4, DIV, INT->3]
+enter the equation: 2-1
+[INT->2, MINUS, INT->1]
+enter the equation: 3*n
+Illegal Character: : n
