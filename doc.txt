@@ -11,3 +11,10 @@ enter the equation: 2-1
 [INT->2, MINUS, INT->1]
 enter the equation: 3*n
 Illegal Character: : n
+
+-> grammar
+expression ---> term((PLUS|MINUS)term)*
+term ---> factor((MULTIPLY|DIV)factor)*
+factor ---> INT | FLOAT
+       ---> (PLUS|MINUS) factor
+       ---> LeftPAREN expression RightPAREN

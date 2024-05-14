@@ -1,36 +1,6 @@
-
-Digits = '0123456789'
-INT		= 'INT'
-FLOAT    = 'FLOAT'
-PLUS     = 'PLUS'
-MINUS    = 'MINUS'
-MULTIPLY     = 'Multiply'
-DIV      = 'DIV'
-LeftPAREN   = 'LeftPAREN'
-RightPAREN   = 'RightPAREN'
-
-class Token:
-    def __init__(self, type_, value=None):
-        self.type = type_
-        self.value = value
-    
-    def __repr__(self):
-        # print type then print the value of the type
-        if self.value: return f'{self.type}->{self.value}'
-        #if the type did not has value just print the type 
-        return f'{self.type}'
-
-class Error:
-    def __init__(self, errorName, details):
-        self.errorName = errorName
-        self.details = details
-    def as_string(self):
-        result  = f'{self.errorName}: {self.details}\n'
-        return result
-
-class IllegalCharError(Error):
-    def __init__(self, details):
-        super().__init__('Illegal Character: ', details)
+from Variables import *
+from Token import *
+from Error import *
 
     
 class Lexer:
@@ -76,8 +46,8 @@ class Lexer:
                 char = self.currentChar
                 self.nextChar()
                 return [], IllegalCharError(char)
-
-
+            
+        tokens.append(Token(EOF))
         return tokens, None
     def numbers(self):
         isFloat = 0
@@ -97,13 +67,3 @@ class Lexer:
             return Token(FLOAT, float(numStr))
         else:
             return Token(INT, int(numStr))
-        
-def execute(text):
-    lexer = Lexer(text)
-    tokens, error = lexer.makeToken()
-    return tokens, error
-
-
-    
-
-
